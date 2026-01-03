@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AGB Studio | Apps</title>
+    <style>
+      /* --- CORE STYLES (MATCHING INDEX) --- */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        font-family: "Courier New", Courier, monospace;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+
+      /* Background Canvas */
+      #canvas-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1; /* Behind content */
+        pointer-events: none; /* Let clicks pass through */
+      }
+
+      /* --- NAVIGATION --- */
+      .nav-links {
+        position: fixed; /* Fixed to stay on top while scrolling */
+        top: 40px;
+        right: 50px;
+        z-index: 100;
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        background: rgba(255, 255, 255, 0.8); /* Slight backdrop */
+        padding: 5px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #000;
+        opacity: 0.4;
+        transition: opacity 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        opacity: 1;
+      }
+
+      /* --- CONTENT LAYOUT --- */
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 1200px;
+        margin: 150px auto 50px auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 60px;
+      }
+
+      /* --- APP SECTIONS (DOT BORDER STYLE) --- */
+      .app-card {
+        position: relative;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.6); /* Semi-transparent */
+        transition: transform 0.3s ease;
+        cursor: pointer;
+      }
+
+      /* The Magic: Dotted Border using CSS to mimic Particles */
+      .app-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px dotted #aaa; /* Initial light dots */
+        pointer-events: none;
+        transition: border-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .app-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .app-card:hover::before {
+        border-color: #000; /* Darker dots on hover */
+        transform: scale(1.02); /* Slight expansion */
+      }
+
+      /* Typography */
+      .app-number {
+        font-size: 10px;
+        color: #999;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      .app-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0 0 15px 0;
+        letter-spacing: -1px;
+      }
+
+      .app-desc {
+        font-size: 13px;
+        line-height: 1.6;
+        color: #444;
+      }
+
+      .btn-link {
+        display: inline-block;
+        margin-top: 20px;
+        font-size: 11px;
+        text-decoration: underline;
+        color: #000;
+      }
+
+      /* Fade In Animation */
+      .fade-in {
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV LINKS -->
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <span>|</span>
+      <a href="apps.html" class="active">APPS</a>
+      <span>|</span>
+      <a href="mailto:support@chart-review.com">CONTACT</a>
+    </div>
+
+    <!-- BACKGROUND THREE.JS -->
+    <div id="canvas-bg"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content-wrapper">
+      <!-- Project 1 -->
+      <div class="app-card fade-in" style="animation-delay: 0.1s">
+        <span class="app-number">MOBILE APP</span>
+        <h2 class="app-title">STYLE AND MAKEUP CHECKER</h2>
+        <p class="app-desc">
+          An experimental biometric scanning tool that converts facial topology
+          into point-cloud data in real-time. Built for iOS.
+        </p>
+        <a href="#" class="btn-link">GOOGLE PLAY -></a>
+        <a href="#" class="btn-link">APP STORE -></a>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="app-card fade-in" style="animation-delay: 0.2s">
+        <span class="app-number">WEB APP</span>
+        <h2 class="app-title">CHART REVIEW</h2>
+        <p class="app-desc">
+          A chart review tool that helps you review charts and make decisions.
+        </p>
+        <a href="http://chart-review.com/" class="btn-link">WEB APP -></a>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="app-card fade-in" style="animation-delay: 0.3s">
+        <span class="app-number">WEB APP</span>
+        <h2 class="app-title">MIRAKU</h2>
+        <p class="app-desc">
+          Japanese learning app with memorable, fun, and informative lessons.
+          Master radicals, kanji, and vocabulary with etymology.
+        </p>
+        <a href="https://www.miraku.jp/" class="btn-link">WEB APP -></a>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+      // --- THREE.JS BACKGROUND SETUP ---
+      // Keeps the same "feeling" as the homepage but abstract (no face), just atmosphere.
+
+      const config = {
+        particleColor: 0x888888, // Lighter grey for background
+        bgColor: 0xffffff,
+        count: 800, // Number of floating particles
+        interactionRadius: 150,
+        interactionForce: 30,
+      };
+
+      const container = document.getElementById("canvas-bg");
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(config.bgColor);
+
+      const camera = new THREE.PerspectiveCamera(
+        50,
+        window.innerWidth / window.innerHeight,
+        1,
+        1000
+      );
+      camera.position.z = 200;
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      // --- CREATE RANDOM PARTICLES ---
+      const geometry = new THREE.BufferGeometry();
+      const positions = [];
+      const originalPositions = [];
+      const speeds = [];
+
+      for (let i = 0; i < config.count; i++) {
+        // Random distribution covering the screen
+        const x = (Math.random() - 0.5) * 600;
+        const y = (Math.random() - 0.5) * 400;
+        const z = (Math.random() - 0.5) * 200;
+
+        positions.push(x, y, z);
+        originalPositions.push({ x, y, z });
+
+        // Random floating speed
+        speeds.push({
+          x: (Math.random() - 0.5) * 0.2,
+          y: (Math.random() - 0.5) * 0.2,
+        });
+      }
+
+      geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(positions, 3)
+      );
+
+      const material = new THREE.PointsMaterial({
+        color: config.particleColor,
+        size: 2,
+        transparent: true,
+        opacity: 0.6,
+        sizeAttenuation: true,
+      });
+
+      const particles = new THREE.Points(geometry, material);
+      scene.add(particles);
+
+      // --- MOUSE INTERACTION ---
+      const mouse = new THREE.Vector2(-9999, -9999);
+      const raycaster = new THREE.Raycaster();
+      const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+
+      // Update mouse even when scrolling
+      document.addEventListener("mousemove", (event) => {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      document.addEventListener("mouseleave", () => {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      });
+
+      // --- ANIMATION LOOP ---
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const posArray = geometry.attributes.position.array;
+
+        // Calculate mouse position in 3D
+        raycaster.setFromCamera(mouse, camera);
+        const target = new THREE.Vector3();
+        raycaster.ray.intersectPlane(plane, target);
+
+        for (let i = 0; i < config.count; i++) {
+          const idx = i * 3;
+          const original = originalPositions[i];
+          const speed = speeds[i];
+
+          // 1. Natural Floating Movement
+          original.x += speed.x;
+          original.y += speed.y;
+
+          // Bounce off "walls" (keep them in frame roughly)
+          if (original.x > 300 || original.x < -300) speed.x *= -1;
+          if (original.y > 200 || original.y < -200) speed.y *= -1;
+
+          // 2. Mouse Interaction
+          let px = posArray[idx];
+          let py = posArray[idx + 1];
+          let pz = posArray[idx + 2];
+
+          const dx = px - target.x;
+          const dy = py - target.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          let targetX = original.x;
+          let targetY = original.y;
+          let targetZ = original.z;
+
+          if (dist < config.interactionRadius) {
+            const angle = Math.atan2(dy, dx);
+            const force =
+              (config.interactionRadius - dist) / config.interactionRadius;
+
+            targetX =
+              original.x +
+              Math.cos(angle) * config.interactionForce * force * 3;
+            targetY =
+              original.y +
+              Math.sin(angle) * config.interactionForce * force * 3;
+            targetZ = original.z + force * 50;
+          }
+
+          // Smooth interpolation
+          posArray[idx] += (targetX - px) * 0.05;
+          posArray[idx + 1] += (targetY - py) * 0.05;
+          posArray[idx + 2] += (targetZ - pz) * 0.05;
+        }
+
+        geometry.attributes.position.needsUpdate = true;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // Handle Resize
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>
