@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy | Style and Makeup Checker</title>
+    <style>
+      /* --- CORE STYLES (MATCHING INDEX) --- */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        font-family: "Courier New", Courier, monospace;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+
+      /* Background Canvas */
+      #canvas-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1; /* Behind content */
+        pointer-events: none; /* Let clicks pass through */
+      }
+
+      /* --- NAVIGATION --- */
+      .nav-links {
+        position: fixed; /* Fixed to stay on top while scrolling */
+        top: 40px;
+        right: 50px;
+        z-index: 100;
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        background: rgba(255, 255, 255, 0.8); /* Slight backdrop */
+        padding: 5px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #000;
+        opacity: 0.4;
+        transition: opacity 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        opacity: 1;
+      }
+
+      /* --- CONTENT LAYOUT --- */
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 900px;
+        margin: 150px auto 50px auto;
+        padding: 0 20px;
+      }
+
+      /* --- PRIVACY POLICY CARD --- */
+      .privacy-card {
+        position: relative;
+        padding: 60px 50px;
+        background: rgba(255, 255, 255, 0.6); /* Semi-transparent */
+        margin-bottom: 40px;
+      }
+
+      /* The Magic: Dotted Border using CSS to mimic Particles */
+      .privacy-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px dotted #aaa; /* Initial light dots */
+        pointer-events: none;
+        transition: border-color 0.3s ease;
+      }
+
+      .privacy-card:hover::before {
+        border-color: #000; /* Darker dots on hover */
+      }
+
+      /* Typography */
+      .policy-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        letter-spacing: -1px;
+      }
+
+      .policy-subtitle {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 40px;
+        display: block;
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 40px 0 15px 0;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .section-content {
+        font-size: 13px;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 20px;
+      }
+
+      .section-content ul {
+        margin: 15px 0;
+        padding-left: 25px;
+      }
+
+      .section-content li {
+        margin-bottom: 10px;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .contact-info {
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 1px dotted #aaa;
+        font-size: 12px;
+        color: #666;
+      }
+
+      /* Fade In Animation */
+      .fade-in {
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV LINKS -->
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <span>|</span>
+      <a href="apps.html">APPS</a>
+      <span>|</span>
+      <a href="mailto:support@chart-review.com">CONTACT</a>
+    </div>
+
+    <!-- BACKGROUND THREE.JS -->
+    <div id="canvas-bg"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content-wrapper">
+      <div class="privacy-card fade-in" style="animation-delay: 0.1s">
+        <h1 class="policy-title">PRIVACY POLICY</h1>
+        <span class="policy-subtitle"
+          >Style and Makeup Checker | Last Updated: January 2025</span
+        >
+
+        <div class="section-content">
+          <p>
+            This Privacy Policy describes how
+            <span class="highlight">Style and Makeup Checker</span> ("we",
+            "our", or "the App") collects, uses, and protects your personal
+            information when you use our mobile application.
+          </p>
+        </div>
+
+        <h2 class="section-title">1. Information We Collect</h2>
+        <div class="section-content">
+          <p>When you use our App, we collect the following information:</p>
+          <ul>
+            <li>
+              <span class="highlight">Camera Images:</span> The App requires
+              access to your device's camera to capture photos for style and
+              makeup analysis. These images are processed locally on your device
+              and are
+              <span class="highlight"
+                >never stored remotely or transmitted to external servers</span
+              >.
+            </li>
+            <li>
+              <span class="highlight">Analysis Data:</span> The App processes
+              your images to extract makeup and style information, including but
+              not limited to:
+              <ul>
+                <li>Facial features and structure</li>
+                <li>Makeup application details</li>
+                <li>Style and fashion attributes</li>
+                <li>Color analysis and recommendations</li>
+              </ul>
+            </li>
+            <li>
+              <span class="highlight">AI Processing:</span> To provide analysis
+              services, your images may be sent to third-party AI services
+              (including ChatGPT and similar AI platforms) for processing.
+              However,
+              <span class="highlight"
+                >images are not stored by these services</span
+              >
+              and are only used for real-time analysis.
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="section-title">2. How We Use Your Information</h2>
+        <div class="section-content">
+          <p>
+            We use the collected information solely for the following purposes:
+          </p>
+          <ul>
+            <li>To provide style and makeup analysis services</li>
+            <li>
+              To generate personalized recommendations based on your photos
+            </li>
+            <li>To improve the App's functionality and user experience</li>
+            <li>
+              To process and analyze makeup and style data for recommendations
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="section-title">3. Data Storage</h2>
+        <div class="section-content">
+          <p>
+            <span class="highlight"
+              >All images and photos captured through the App are stored
+              exclusively on your device's local storage.</span
+            >
+            We do not maintain any remote servers or cloud storage for your
+            images. Your photos remain under your complete control and are never
+            uploaded to our servers or third-party storage services.
+          </p>
+          <p>
+            Analysis results and style recommendations may be stored locally on
+            your device to provide you with a history of your analyses and
+            improve your experience with the App.
+          </p>
+        </div>
+
+        <h2 class="section-title">4. Data Processing</h2>
+        <div class="section-content">
+          <p>
+            Makeup and style information extracted from your images may be
+            processed and analyzed to provide you with:
+          </p>
+          <ul>
+            <li>Personalized style recommendations</li>
+            <li>Makeup suggestions and tips</li>
+            <li>Color palette recommendations</li>
+            <li>Fashion style analysis</li>
+          </ul>
+          <p>
+            This processing occurs either locally on your device or through
+            secure, temporary connections to AI processing services.
+            <span class="highlight"
+              >No processed data is permanently stored by third-party
+              services.</span
+            >
+          </p>
+        </div>
+
+        <h2 class="section-title">5. Third-Party Services</h2>
+        <div class="section-content">
+          <p>
+            The App may use third-party AI services (such as ChatGPT) to process
+            your images for analysis purposes. These services:
+          </p>
+          <ul>
+            <li>
+              Process images only for the duration necessary to provide analysis
+            </li>
+            <li>Do not store your images permanently</li>
+            <li>
+              Are bound by their own privacy policies and terms of service
+            </li>
+          </ul>
+          <p>
+            We recommend reviewing the privacy policies of these third-party
+            services to understand how they handle data during processing.
+          </p>
+        </div>
+
+        <h2 class="section-title">6. Your Rights</h2>
+        <div class="section-content">
+          <p>
+            You have the following rights regarding your personal information:
+          </p>
+          <ul>
+            <li>
+              <span class="highlight">Access:</span> You can access all images
+              stored locally on your device through your device's file system
+            </li>
+            <li>
+              <span class="highlight">Deletion:</span> You can delete any images
+              or analysis data stored locally on your device at any time
+            </li>
+            <li>
+              <span class="highlight">Control:</span> You can revoke camera
+              permissions at any time through your device settings
+            </li>
+            <li>
+              <span class="highlight">Opt-out:</span> You can stop using the App
+              at any time, and all locally stored data will remain on your
+              device until you manually delete it
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="section-title">7. Data Security</h2>
+        <div class="section-content">
+          <p>
+            We implement appropriate technical measures to protect your data:
+          </p>
+          <ul>
+            <li>
+              All images are stored locally on your device, protected by your
+              device's security measures
+            </li>
+            <li>No remote storage means reduced risk of data breaches</li>
+            <li>
+              Secure connections are used when communicating with AI processing
+              services
+            </li>
+            <li>Data is processed in a temporary, non-persistent manner</li>
+          </ul>
+        </div>
+
+        <h2 class="section-title">8. Children's Privacy</h2>
+        <div class="section-content">
+          <p>
+            Our App is not intended for children under the age of 13. We do not
+            knowingly collect personal information from children under 13. If
+            you are a parent or guardian and believe your child has provided us
+            with personal information, please contact us immediately.
+          </p>
+        </div>
+
+        <h2 class="section-title">9. Changes to This Privacy Policy</h2>
+        <div class="section-content">
+          <p>
+            We may update this Privacy Policy from time to time. We will notify
+            you of any changes by posting the new Privacy Policy in the App and
+            updating the "Last Updated" date. You are advised to review this
+            Privacy Policy periodically for any changes.
+          </p>
+        </div>
+
+        <h2 class="section-title">10. Contact Us</h2>
+        <div class="section-content">
+          <p>
+            If you have any questions about this Privacy Policy or our data
+            practices, please contact us at:
+          </p>
+          <div class="contact-info">
+            <p>
+              <strong>Email:</strong>
+              <a
+                href="mailto:support@chart-review.com"
+                style="color: #000; text-decoration: underline"
+                >support@chart-review.com</a
+              >
+            </p>
+            <p><strong>App Name:</strong> Style and Makeup Checker</p>
+          </div>
+        </div>
+
+        <div
+          class="section-content"
+          style="
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px dotted #aaa;
+            font-size: 11px;
+            color: #999;
+          "
+        >
+          <p>
+            By using Style and Makeup Checker, you acknowledge that you have
+            read and understood this Privacy Policy and agree to the collection
+            and use of information as described herein.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+      // --- THREE.JS BACKGROUND SETUP ---
+      // Keeps the same "feeling" as the homepage but abstract (no face), just atmosphere.
+
+      const config = {
+        particleColor: 0x888888, // Lighter grey for background
+        bgColor: 0xffffff,
+        count: 800, // Number of floating particles
+        interactionRadius: 150,
+        interactionForce: 30,
+      };
+
+      const container = document.getElementById("canvas-bg");
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(config.bgColor);
+
+      const camera = new THREE.PerspectiveCamera(
+        50,
+        window.innerWidth / window.innerHeight,
+        1,
+        1000
+      );
+      camera.position.z = 200;
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      // --- CREATE RANDOM PARTICLES ---
+      const geometry = new THREE.BufferGeometry();
+      const positions = [];
+      const originalPositions = [];
+      const speeds = [];
+
+      for (let i = 0; i < config.count; i++) {
+        // Random distribution covering the screen
+        const x = (Math.random() - 0.5) * 600;
+        const y = (Math.random() - 0.5) * 400;
+        const z = (Math.random() - 0.5) * 200;
+
+        positions.push(x, y, z);
+        originalPositions.push({ x, y, z });
+
+        // Random floating speed
+        speeds.push({
+          x: (Math.random() - 0.5) * 0.2,
+          y: (Math.random() - 0.5) * 0.2,
+        });
+      }
+
+      geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(positions, 3)
+      );
+
+      const material = new THREE.PointsMaterial({
+        color: config.particleColor,
+        size: 2,
+        transparent: true,
+        opacity: 0.6,
+        sizeAttenuation: true,
+      });
+
+      const particles = new THREE.Points(geometry, material);
+      scene.add(particles);
+
+      // --- MOUSE INTERACTION ---
+      const mouse = new THREE.Vector2(-9999, -9999);
+      const raycaster = new THREE.Raycaster();
+      const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+
+      // Update mouse even when scrolling
+      document.addEventListener("mousemove", (event) => {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      document.addEventListener("mouseleave", () => {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      });
+
+      // --- ANIMATION LOOP ---
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const posArray = geometry.attributes.position.array;
+
+        // Calculate mouse position in 3D
+        raycaster.setFromCamera(mouse, camera);
+        const target = new THREE.Vector3();
+        raycaster.ray.intersectPlane(plane, target);
+
+        for (let i = 0; i < config.count; i++) {
+          const idx = i * 3;
+          const original = originalPositions[i];
+          const speed = speeds[i];
+
+          // 1. Natural Floating Movement
+          original.x += speed.x;
+          original.y += speed.y;
+
+          // Bounce off "walls" (keep them in frame roughly)
+          if (original.x > 300 || original.x < -300) speed.x *= -1;
+          if (original.y > 200 || original.y < -200) speed.y *= -1;
+
+          // 2. Mouse Interaction
+          let px = posArray[idx];
+          let py = posArray[idx + 1];
+          let pz = posArray[idx + 2];
+
+          const dx = px - target.x;
+          const dy = py - target.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          let targetX = original.x;
+          let targetY = original.y;
+          let targetZ = original.z;
+
+          if (dist < config.interactionRadius) {
+            const angle = Math.atan2(dy, dx);
+            const force =
+              (config.interactionRadius - dist) / config.interactionRadius;
+
+            targetX =
+              original.x +
+              Math.cos(angle) * config.interactionForce * force * 3;
+            targetY =
+              original.y +
+              Math.sin(angle) * config.interactionForce * force * 3;
+            targetZ = original.z + force * 50;
+          }
+
+          // Smooth interpolation
+          posArray[idx] += (targetX - px) * 0.05;
+          posArray[idx + 1] += (targetY - py) * 0.05;
+          posArray[idx + 2] += (targetZ - pz) * 0.05;
+        }
+
+        geometry.attributes.position.needsUpdate = true;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // Handle Resize
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>
