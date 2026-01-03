@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AGB Studio</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #ffffff;
+        font-family: "Courier New", Courier, monospace;
+      }
+
+      #canvas-container {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+      }
+
+      .nav-links {
+        background-color: #ffffff;
+        position: absolute;
+        top: 40px;
+        right: 50px;
+        z-index: 10;
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 2px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #000;
+        opacity: 0.4;
+        transition: opacity 0.3s;
+      }
+
+      .nav-links a:hover {
+        opacity: 1;
+      }
+
+      #loading {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #000;
+        font-size: 12px;
+        letter-spacing: 4px;
+        pointer-events: none;
+        transition: opacity 1s ease;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.3;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav-links">
+      <a href="#">APPS</a>
+      <span>|</span>
+      <a href="mailto:support@chart-review.com">CONTACT</a>
+    </div>
+
+    <div id="loading">AGB STUDIO...</div>
+    <div id="canvas-container"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+
+    <script>
+      const config = {
+        imagePath: "my-face.png",
+        particleColor: 0x1a1a1a,
+        bgColor: 0xffffff,
+        interactionRadius: 3,
+        interactionForce: 600,
+        threshold: 90,
+        particleSize: 1,
+      };
+
+      let scene, camera, renderer, particles, geometry;
+      let originalPositions = [];
+
+      const container = document.getElementById("canvas-container");
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(config.bgColor);
+
+      camera = new THREE.PerspectiveCamera(
+        50,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        10000
+      );
+      camera.position.z = 400;
+
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      const img = new Image();
+      img.src = config.imagePath;
+
+      img.onload = function () {
+        initParticles();
+        setTimeout(() => {
+          document.getElementById("loading").style.opacity = 0;
+          gsap.to(camera.position, {
+            duration: 2.5,
+            z: 300,
+            ease: "power2.out",
+          });
+        }, 500);
+      };
+
+      function initParticles() {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        const maxWidth = 220;
+        const scale = maxWidth / img.width;
+        canvas.width = maxWidth;
+        canvas.height = img.height * scale;
+
+        ctx.filter = "grayscale(100%) contrast(140%) brightness(110%)";
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        const positions = [];
+        originalPositions = [];
+
+        for (let y = 0; y < canvas.height; y++) {
+          for (let x = 0; x < canvas.width; x++) {
+            const index = (y * canvas.width + x) * 4;
+            const r = imgData.data[index];
+
+            if (r < config.threshold) {
+              const pX = (x - canvas.width / 2) * 2.5;
+              const pY = -(y - canvas.height / 2) * 2.5;
+              const pZ = 0;
+
+              positions.push(pX, pY, pZ);
+              originalPositions.push({ x: pX, y: pY, z: pZ });
+            }
+          }
+        }
+
+        geometry = new THREE.BufferGeometry();
+        geometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(positions, 3)
+        );
+
+        const material = new THREE.PointsMaterial({
+          color: config.particleColor,
+          size: config.particleSize,
+          transparent: true,
+          opacity: 0.9,
+          sizeAttenuation: true,
+        });
+
+        particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+      }
+
+      const mouse = new THREE.Vector2(-9999, -9999);
+      const raycaster = new THREE.Raycaster();
+      const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+
+      document.addEventListener("mousemove", (event) => {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      document.addEventListener("mouseleave", () => {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      });
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        if (particles && geometry) {
+          const positions = geometry.attributes.position.array;
+          raycaster.setFromCamera(mouse, camera);
+          const target = new THREE.Vector3();
+          raycaster.ray.intersectPlane(plane, target);
+
+          for (let i = 0; i < originalPositions.length; i++) {
+            const origin = originalPositions[i];
+            const idx = i * 3;
+
+            const px = positions[idx];
+            const py = positions[idx + 1];
+            const pz = positions[idx + 2];
+
+            const dx = px - target.x;
+            const dy = py - target.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            let targetX = origin.x;
+            let targetY = origin.y;
+            let targetZ = origin.z;
+
+            if (dist < config.interactionRadius) {
+              const angle = Math.atan2(dy, dx);
+              const force =
+                (config.interactionRadius - dist) / config.interactionRadius;
+
+              targetX =
+                origin.x +
+                Math.cos(angle) * config.interactionForce * force * 5;
+              targetY =
+                origin.y +
+                Math.sin(angle) * config.interactionForce * force * 5;
+              targetZ = origin.z + force * 60;
+            }
+
+            positions[idx] += (targetX - px) * 0.1;
+            positions[idx + 1] += (targetY - py) * 0.1;
+            positions[idx + 2] += (targetZ - pz) * 0.1;
+          }
+          geometry.attributes.position.needsUpdate = true;
+        }
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>
