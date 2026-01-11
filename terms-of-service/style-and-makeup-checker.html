@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service | Style and Makeup Checker</title>
+    <style>
+      /* --- CORE STYLES (MATCHING INDEX) --- */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        font-family: "Courier New", Courier, monospace;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+      }
+
+      /* Background Canvas */
+      #canvas-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1; /* Behind content */
+        pointer-events: none; /* Let clicks pass through */
+      }
+
+      /* --- NAVIGATION --- */
+      .nav-links {
+        position: fixed; /* Fixed to stay on top while scrolling */
+        top: 40px;
+        right: 50px;
+        z-index: 100;
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        background: rgba(255, 255, 255, 0.8); /* Slight backdrop */
+        padding: 5px;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #000;
+        opacity: 0.4;
+        transition: opacity 0.3s;
+        cursor: pointer;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        opacity: 1;
+      }
+
+      /* --- CONTENT LAYOUT --- */
+      .content-wrapper {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 900px;
+        margin: 150px auto 50px auto;
+        padding: 0 20px;
+      }
+
+      /* --- TERMS OF SERVICE CARD --- */
+      .terms-card {
+        position: relative;
+        padding: 60px 50px;
+        background: rgba(255, 255, 255, 0.6); /* Semi-transparent */
+        margin-bottom: 40px;
+      }
+
+      /* The Magic: Dotted Border using CSS to mimic Particles */
+      .terms-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 2px dotted #aaa; /* Initial light dots */
+        pointer-events: none;
+        transition: border-color 0.3s ease;
+      }
+
+      .terms-card:hover::before {
+        border-color: #000; /* Darker dots on hover */
+      }
+
+      /* Typography */
+      .policy-title {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        letter-spacing: -1px;
+      }
+
+      .policy-subtitle {
+        font-size: 12px;
+        color: #999;
+        margin-bottom: 40px;
+        display: block;
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin: 40px 0 15px 0;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+
+      .section-content {
+        font-size: 13px;
+        line-height: 1.8;
+        color: #444;
+        margin-bottom: 20px;
+      }
+
+      .section-content ul {
+        margin: 15px 0;
+        padding-left: 25px;
+      }
+
+      .section-content li {
+        margin-bottom: 10px;
+      }
+
+      .highlight {
+        font-weight: bold;
+        color: #000;
+      }
+
+      .contact-info {
+        margin-top: 50px;
+        padding-top: 30px;
+        border-top: 1px dotted #aaa;
+        font-size: 12px;
+        color: #666;
+      }
+
+      /* Fade In Animation */
+      .fade-in {
+        animation: fadeIn 1s ease forwards;
+        opacity: 0;
+      }
+
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV LINKS -->
+    <div class="nav-links">
+      <a href="../index.html">HOME</a>
+      <span>|</span>
+      <a href="../apps.html">APPS</a>
+      <span>|</span>
+      <a href="mailto:support@chart-review.com">CONTACT</a>
+    </div>
+
+    <!-- BACKGROUND THREE.JS -->
+    <div id="canvas-bg"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="content-wrapper">
+      <div class="terms-card fade-in" style="animation-delay: 0.1s">
+        <h1 class="policy-title">TERMS OF SERVICE</h1>
+        <span class="policy-subtitle"
+          >Style and Makeup Checker | Last Updated: January 2025</span
+        >
+
+        <div class="section-content">
+          <p>
+            Welcome to <span class="highlight">Style and Makeup Checker</span>.
+            By accessing or using our mobile application (the "App"), you agree
+            to be bound by these Terms of Service ("Terms"). Please read them
+            carefully.
+          </p>
+        </div>
+
+        <h2 class="section-title">1. Acceptance of Terms</h2>
+        <div class="section-content">
+          <p>
+            By downloading or using the App, you agree to these Terms. If you do
+            not agree to these Terms, you may not use the App. These Terms apply
+            to all users, visitors, and others who access or use the Service.
+          </p>
+        </div>
+
+        <h2 class="section-title">2. Use of the App</h2>
+        <div class="section-content">
+          <p>
+            <span class="highlight">Style and Makeup Checker</span> provides
+            AI-powered style and makeup analysis using your device's camera. You
+            are responsible for:
+          </p>
+          <ul>
+            <li>
+              Providing accurate information and images for the best results.
+            </li>
+            <li>
+              Using only photographs that belong to you or that you have
+              explicit permission to use. You may not use photographs of other
+              people without their consent.
+            </li>
+            <li>Using the App for personal, non-commercial purposes only.</li>
+            <li>Not using the App for any illegal or unauthorized purpose.</li>
+            <li>
+              Not misusing the App, including but not limited to: attempting to
+              reverse engineer the App, using automated systems to access the
+              App, or using the App in any way that could harm, disable, or
+              impair the service.
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="section-title">3. AI Processing & Content</h2>
+        <div class="section-content">
+          <p>
+            Our App uses advanced AI models (including third-party services like
+            ChatGPT) to analyze images. You acknowledge that:
+          </p>
+          <ul>
+            <li>
+              AI-generated suggestions are for informational purposes and should
+              not be taken as professional medical or dermatological advice.
+            </li>
+            <li>
+              Results may vary based on image quality, lighting, and camera
+              hardware.
+            </li>
+            <li>
+              While we strive for accuracy, we do not guarantee that the
+              recommendations will be error-free or perfectly suited to your
+              needs.
+            </li>
+            <li>
+              The App processes images through third-party AI services for
+              analysis purposes only.
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="section-title">4. Intellectual Property</h2>
+        <div class="section-content">
+          <p>
+            The App and its original content, features, and functionality are
+            and will remain the exclusive property of
+            <span class="highlight">Style and Makeup Checker</span>
+            and its licensors. Our trademarks and trade dress may not be used in
+            connection with any product or service without our prior written
+            consent.
+          </p>
+          <p>
+            You retain all rights to the photos you take within the App.
+            However, by using the service, you grant us a temporary,
+            non-exclusive license to process these images solely for the purpose
+            of providing the analysis requested.
+          </p>
+        </div>
+
+        <h2 class="section-title">5. User Content</h2>
+        <div class="section-content">
+          <p>
+            All images and content you create or upload through the App ("User
+            Content") remain your property. However, by using the App, you
+            represent and warrant that:
+          </p>
+          <ul>
+            <li>
+              You own or have the necessary rights to use and process the User
+              Content. You may not upload or use photographs that do not belong
+              to you or for which you do not have explicit permission from the
+              copyright owner or the person depicted.
+            </li>
+            <li>
+              Your User Content does not violate any third-party rights,
+              including copyright, trademark, or privacy rights.
+            </li>
+            <li>
+              Your User Content is not illegal, offensive, or harmful to others.
+            </li>
+            <li>
+              You will not misuse the App or use it to violate any laws or
+              infringe upon the rights of others.
+            </li>
+          </ul>
+          <p>
+            <span class="highlight"
+              >You are solely responsible for any misuse of the App or violation
+              of these terms regarding User Content. We are not liable for any
+              claims, damages, or legal actions arising from your use of
+              photographs or content that you do not have the right to use, or
+              from any misuse of the App.</span
+            >
+          </p>
+        </div>
+
+        <h2 class="section-title">6. Limitation of Liability</h2>
+        <div class="section-content">
+          <p>
+            In no event shall
+            <span class="highlight">Style and Makeup Checker</span>, nor its
+            directors, employees, or partners, be liable for any indirect,
+            incidental, special, consequential, or punitive damages, including
+            without limitation, loss of profits, data, use, goodwill, or other
+            intangible losses, resulting from:
+          </p>
+          <ul>
+            <li>
+              Your access to or use of (or inability to access or use) the App.
+            </li>
+            <li>Any conduct or content of any third party on the App.</li>
+            <li>The results provided by the AI analysis.</li>
+            <li>Any errors or omissions in the App's functionality.</li>
+            <li>
+              Any misuse of the App by users, including but not limited to the
+              use of photographs or content without proper authorization or
+              rights.
+            </li>
+            <li>
+              Any legal claims, disputes, or actions arising from users' misuse
+              of the App or violation of third-party rights through their use of
+              unauthorized photographs or content.
+            </li>
+          </ul>
+        </div>
+
+        <h2 class="section-title">7. Disclaimer</h2>
+        <div class="section-content">
+          <p>
+            Your use of the App is at your sole risk. The Service is provided on
+            an "AS IS" and "AS AVAILABLE" basis. The Service is provided without
+            warranties of any kind, whether express or implied, including, but
+            not limited to, implied warranties of merchantability, fitness for a
+            particular purpose, non-infringement, or course of performance.
+          </p>
+          <p>
+            The App's recommendations and suggestions are for informational
+            purposes only and should not be considered as professional advice.
+            Always consult with qualified professionals for medical,
+            dermatological, or cosmetic concerns.
+          </p>
+        </div>
+
+        <h2 class="section-title">8. Termination</h2>
+        <div class="section-content">
+          <p>
+            We may terminate or suspend your access to our App immediately,
+            without prior notice or liability, for any reason whatsoever,
+            including without limitation if you breach the Terms.
+          </p>
+          <p>
+            Upon termination, your right to use the App will immediately cease.
+            If you wish to terminate your account, you may simply discontinue
+            using the App and delete it from your device. All data stored
+            locally on your device will remain until you manually delete it.
+          </p>
+        </div>
+
+        <h2 class="section-title">9. Governing Law</h2>
+        <div class="section-content">
+          <p>
+            These Terms shall be governed and construed in accordance with the
+            laws of the jurisdiction in which the developer operates, without
+            regard to its conflict of law provisions.
+          </p>
+          <p>
+            Our failure to enforce any right or provision of these Terms will
+            not be considered a waiver of those rights. If any provision of
+            these Terms is held to be invalid or unenforceable, the remaining
+            provisions will remain in full effect.
+          </p>
+        </div>
+
+        <h2 class="section-title">10. Changes to Terms</h2>
+        <div class="section-content">
+          <p>
+            We reserve the right, at our sole discretion, to modify or replace
+            these Terms at any time. By continuing to access or use our App
+            after those revisions become effective, you agree to be bound by the
+            revised terms. We will update the "Last Updated" date when changes
+            are made.
+          </p>
+        </div>
+
+        <h2 class="section-title">11. Contact Us</h2>
+        <div class="section-content">
+          <p>
+            If you have any questions about these Terms, please contact us at:
+          </p>
+          <div class="contact-info">
+            <p>
+              <strong>Email:</strong>
+              <a
+                href="mailto:support@chart-review.com"
+                style="color: #000; text-decoration: underline"
+                >support@chart-review.com</a
+              >
+            </p>
+            <p><strong>App Name:</strong> Style and Makeup Checker</p>
+          </div>
+        </div>
+
+        <div
+          class="section-content"
+          style="
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px dotted #aaa;
+            font-size: 11px;
+            color: #999;
+          "
+        >
+          <p>
+            By using Style and Makeup Checker, you acknowledge that you have
+            read and understood these Terms of Service and agree to be bound by
+            them.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script>
+      // --- THREE.JS BACKGROUND SETUP ---
+      // Keeps the same "feeling" as the homepage but abstract (no face), just atmosphere.
+
+      const config = {
+        particleColor: 0x888888, // Lighter grey for background
+        bgColor: 0xffffff,
+        count: 800, // Number of floating particles
+        interactionRadius: 150,
+        interactionForce: 30,
+      };
+
+      const container = document.getElementById("canvas-bg");
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(config.bgColor);
+
+      const camera = new THREE.PerspectiveCamera(
+        50,
+        window.innerWidth / window.innerHeight,
+        1,
+        1000
+      );
+      camera.position.z = 200;
+
+      const renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(window.devicePixelRatio);
+      container.appendChild(renderer.domElement);
+
+      // --- CREATE RANDOM PARTICLES ---
+      const geometry = new THREE.BufferGeometry();
+      const positions = [];
+      const originalPositions = [];
+      const speeds = [];
+
+      for (let i = 0; i < config.count; i++) {
+        // Random distribution covering the screen
+        const x = (Math.random() - 0.5) * 600;
+        const y = (Math.random() - 0.5) * 400;
+        const z = (Math.random() - 0.5) * 200;
+
+        positions.push(x, y, z);
+        originalPositions.push({ x, y, z });
+
+        // Random floating speed
+        speeds.push({
+          x: (Math.random() - 0.5) * 0.2,
+          y: (Math.random() - 0.5) * 0.2,
+        });
+      }
+
+      geometry.setAttribute(
+        "position",
+        new THREE.Float32BufferAttribute(positions, 3)
+      );
+
+      const material = new THREE.PointsMaterial({
+        color: config.particleColor,
+        size: 2,
+        transparent: true,
+        opacity: 0.6,
+        sizeAttenuation: true,
+      });
+
+      const particles = new THREE.Points(geometry, material);
+      scene.add(particles);
+
+      // --- MOUSE INTERACTION ---
+      const mouse = new THREE.Vector2(-9999, -9999);
+      const raycaster = new THREE.Raycaster();
+      const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+
+      // Update mouse even when scrolling
+      document.addEventListener("mousemove", (event) => {
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      });
+
+      document.addEventListener("mouseleave", () => {
+        mouse.x = -9999;
+        mouse.y = -9999;
+      });
+
+      // --- ANIMATION LOOP ---
+      function animate() {
+        requestAnimationFrame(animate);
+
+        const posArray = geometry.attributes.position.array;
+
+        // Calculate mouse position in 3D
+        raycaster.setFromCamera(mouse, camera);
+        const target = new THREE.Vector3();
+        raycaster.ray.intersectPlane(plane, target);
+
+        for (let i = 0; i < config.count; i++) {
+          const idx = i * 3;
+          const original = originalPositions[i];
+          const speed = speeds[i];
+
+          // 1. Natural Floating Movement
+          original.x += speed.x;
+          original.y += speed.y;
+
+          // Bounce off "walls" (keep them in frame roughly)
+          if (original.x > 300 || original.x < -300) speed.x *= -1;
+          if (original.y > 200 || original.y < -200) speed.y *= -1;
+
+          // 2. Mouse Interaction
+          let px = posArray[idx];
+          let py = posArray[idx + 1];
+          let pz = posArray[idx + 2];
+
+          const dx = px - target.x;
+          const dy = py - target.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          let targetX = original.x;
+          let targetY = original.y;
+          let targetZ = original.z;
+
+          if (dist < config.interactionRadius) {
+            const angle = Math.atan2(dy, dx);
+            const force =
+              (config.interactionRadius - dist) / config.interactionRadius;
+
+            targetX =
+              original.x +
+              Math.cos(angle) * config.interactionForce * force * 3;
+            targetY =
+              original.y +
+              Math.sin(angle) * config.interactionForce * force * 3;
+            targetZ = original.z + force * 50;
+          }
+
+          // Smooth interpolation
+          posArray[idx] += (targetX - px) * 0.05;
+          posArray[idx + 1] += (targetY - py) * 0.05;
+          posArray[idx + 2] += (targetZ - pz) * 0.05;
+        }
+
+        geometry.attributes.position.needsUpdate = true;
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // Handle Resize
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    </script>
+  </body>
+</html>
