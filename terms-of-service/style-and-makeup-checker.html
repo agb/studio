@@ -4,260 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Terms of Service | Style and Makeup Checker</title>
-    <style>
-      /* --- CORE STYLES (MATCHING INDEX) --- */
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #ffffff;
-        font-family: "Courier New", Courier, monospace;
-        overflow-x: hidden; /* Prevent horizontal scroll */
-      }
-
-      /* Background Canvas */
-      #canvas-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        z-index: -1; /* Behind content */
-        pointer-events: none; /* Let clicks pass through */
-      }
-
-      /* --- NAVIGATION --- */
-      .nav-links {
-        position: fixed; /* Fixed to stay on top while scrolling */
-        top: 40px;
-        right: 50px;
-        z-index: 100;
-        display: flex;
-        gap: 20px;
-        font-size: 14px;
-        font-weight: bold;
-        letter-spacing: 2px;
-        background: rgba(255, 255, 255, 0.8); /* Slight backdrop */
-        padding: 5px;
-      }
-
-      .nav-links a {
-        text-decoration: none;
-        color: #000;
-        opacity: 0.4;
-        transition: opacity 0.3s;
-        cursor: pointer;
-      }
-
-      .nav-links a:hover,
-      .nav-links a.active {
-        opacity: 1;
-      }
-
-      /* --- CONTENT LAYOUT --- */
-      .content-wrapper {
-        position: relative;
-        z-index: 10;
-        width: 100%;
-        max-width: 900px;
-        margin: 150px auto 50px auto;
-        padding: 0 20px;
-      }
-
-      /* --- TERMS OF SERVICE CARD --- */
-      .terms-card {
-        position: relative;
-        padding: 60px 50px;
-        background: rgba(255, 255, 255, 0.6); /* Semi-transparent */
-        margin-bottom: 40px;
-      }
-
-      /* The Magic: Dotted Border using CSS to mimic Particles */
-      .terms-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border: 2px dotted #aaa; /* Initial light dots */
-        pointer-events: none;
-        transition: border-color 0.3s ease;
-      }
-
-      .terms-card:hover::before {
-        border-color: #000; /* Darker dots on hover */
-      }
-
-      /* Typography */
-      .policy-title {
-        font-size: 32px;
-        font-weight: bold;
-        margin: 0 0 10px 0;
-        letter-spacing: -1px;
-      }
-
-      .policy-subtitle {
-        font-size: 12px;
-        color: #999;
-        margin-bottom: 40px;
-        display: block;
-      }
-
-      .section-title {
-        font-size: 18px;
-        font-weight: bold;
-        margin: 40px 0 15px 0;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-      }
-
-      .section-content {
-        font-size: 13px;
-        line-height: 1.8;
-        color: #444;
-        margin-bottom: 20px;
-      }
-
-      .section-content ul {
-        margin: 15px 0;
-        padding-left: 25px;
-      }
-
-      .section-content li {
-        margin-bottom: 10px;
-      }
-
-      .highlight {
-        font-weight: bold;
-        color: #000;
-      }
-
-      .contact-info {
-        margin-top: 50px;
-        padding-top: 30px;
-        border-top: 1px dotted #aaa;
-        font-size: 12px;
-        color: #666;
-      }
-
-      /* Fade In Animation */
-      .fade-in {
-        animation: fadeIn 1s ease forwards;
-        opacity: 0;
-      }
-
-      @keyframes fadeIn {
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* --- MOBILE RESPONSIVE --- */
-      @media (max-width: 768px) {
-        .nav-links {
-          top: 20px;
-          right: 20px;
-          font-size: 12px;
-          gap: 10px;
-          padding: 8px 12px;
-        }
-
-        .content-wrapper {
-          margin-top: 100px;
-          padding: 0 15px;
-        }
-
-        .terms-card {
-          padding: 40px 30px;
-        }
-
-        .policy-title {
-          font-size: 28px;
-        }
-
-        .policy-subtitle {
-          font-size: 12px;
-        }
-
-        .section-title {
-          font-size: 17px;
-          margin: 30px 0 12px 0;
-        }
-
-        .section-content {
-          font-size: 13px;
-          line-height: 1.7;
-        }
-      }
-
-      @media (max-width: 480px) {
-        .nav-links {
-          top: 15px;
-          right: 15px;
-          font-size: 12px;
-          gap: 8px;
-          padding: 6px 10px;
-          flex-wrap: wrap;
-        }
-
-        .content-wrapper {
-          margin-top: 80px;
-          padding: 0 10px;
-        }
-
-        .terms-card {
-          padding: 30px 20px;
-        }
-
-        .policy-title {
-          font-size: 24px;
-        }
-
-        .policy-subtitle {
-          font-size: 11px;
-          margin-bottom: 30px;
-        }
-
-        .section-title {
-          font-size: 15px;
-          margin: 25px 0 10px 0;
-        }
-
-        .section-content {
-          font-size: 12px;
-          line-height: 1.6;
-        }
-
-        .section-content ul {
-          padding-left: 20px;
-        }
-
-        .contact-info {
-          font-size: 12px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="../site.css" />
   </head>
-  <body>
-    <!-- NAV LINKS -->
-    <div class="nav-links">
-      <a href="../index.html">HOME</a>
-      <span>|</span>
-      <a href="../apps.html">APPS</a>
-      <span>|</span>
-      <a href="mailto:support@chart-review.com">CONTACT</a>
-    </div>
+  <body id="top">
+    <header class="site-header">
+      <a class="brand" href="../index.html">AGB Studio</a>
+      <a class="contact-link" href="mailto:support@chart-review.com">
+        Contact
+      </a>
+    </header>
 
-    <!-- BACKGROUND THREE.JS -->
-    <div id="canvas-bg"></div>
-
-    <!-- MAIN CONTENT -->
-    <div class="content-wrapper">
-      <div class="terms-card fade-in" style="animation-delay: 0.1s">
-        <h1 class="policy-title">TERMS OF SERVICE</h1>
-        <span class="policy-subtitle"
-          >Style and Makeup Checker | Last Updated: January 2025</span
-        >
+    <main class="legal-main">
+      <article class="legal-document">
+        <header class="policy-header">
+          <span class="eyebrow">Legal · Style &amp; Makeup Checker</span>
+          <h1>Terms of Service</h1>
+          <span class="policy-meta">Last updated · January 2025</span>
+        </header>
 
         <div class="section-content">
           <p>
@@ -304,7 +67,7 @@
           </ul>
         </div>
 
-        <h2 class="section-title">3. AI Processing & Content</h2>
+        <h2 class="section-title">3. AI Processing &amp; Content</h2>
         <div class="section-content">
           <p>
             Our App uses advanced AI models (including third-party services like
@@ -484,7 +247,7 @@
               <strong>Email:</strong>
               <a
                 href="mailto:support@chart-review.com"
-                style="color: #000; text-decoration: underline"
+                class="inline-link"
                 >support@chart-review.com</a
               >
             </p>
@@ -492,183 +255,15 @@
           </div>
         </div>
 
-        <div
-          class="section-content"
-          style="
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 1px dotted #aaa;
-            font-size: 11px;
-            color: #999;
-          "
-        >
+        <div class="section-content acknowledgement">
           <p>
             By using Style and Makeup Checker, you acknowledge that you have
             read and understood these Terms of Service and agree to be bound by
             them.
           </p>
         </div>
-      </div>
-    </div>
+      </article>
+    </main>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <script>
-      // --- THREE.JS BACKGROUND SETUP ---
-      // Keeps the same "feeling" as the homepage but abstract (no face), just atmosphere.
-
-      const config = {
-        particleColor: 0x888888, // Lighter grey for background
-        bgColor: 0xffffff,
-        count: 800, // Number of floating particles
-        interactionRadius: 150,
-        interactionForce: 30,
-      };
-
-      const container = document.getElementById("canvas-bg");
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(config.bgColor);
-
-      const camera = new THREE.PerspectiveCamera(
-        50,
-        window.innerWidth / window.innerHeight,
-        1,
-        1000
-      );
-      camera.position.z = 200;
-
-      const renderer = new THREE.WebGLRenderer({
-        antialias: true,
-        alpha: true,
-      });
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      renderer.setPixelRatio(window.devicePixelRatio);
-      container.appendChild(renderer.domElement);
-
-      // --- CREATE RANDOM PARTICLES ---
-      const geometry = new THREE.BufferGeometry();
-      const positions = [];
-      const originalPositions = [];
-      const speeds = [];
-
-      for (let i = 0; i < config.count; i++) {
-        // Random distribution covering the screen
-        const x = (Math.random() - 0.5) * 600;
-        const y = (Math.random() - 0.5) * 400;
-        const z = (Math.random() - 0.5) * 200;
-
-        positions.push(x, y, z);
-        originalPositions.push({ x, y, z });
-
-        // Random floating speed
-        speeds.push({
-          x: (Math.random() - 0.5) * 0.2,
-          y: (Math.random() - 0.5) * 0.2,
-        });
-      }
-
-      geometry.setAttribute(
-        "position",
-        new THREE.Float32BufferAttribute(positions, 3)
-      );
-
-      const material = new THREE.PointsMaterial({
-        color: config.particleColor,
-        size: 2,
-        transparent: true,
-        opacity: 0.6,
-        sizeAttenuation: true,
-      });
-
-      const particles = new THREE.Points(geometry, material);
-      scene.add(particles);
-
-      // --- MOUSE INTERACTION ---
-      const mouse = new THREE.Vector2(-9999, -9999);
-      const raycaster = new THREE.Raycaster();
-      const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-
-      // Update mouse even when scrolling
-      document.addEventListener("mousemove", (event) => {
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-      });
-
-      document.addEventListener("mouseleave", () => {
-        mouse.x = -9999;
-        mouse.y = -9999;
-      });
-
-      // --- ANIMATION LOOP ---
-      function animate() {
-        requestAnimationFrame(animate);
-
-        const posArray = geometry.attributes.position.array;
-
-        // Calculate mouse position in 3D
-        raycaster.setFromCamera(mouse, camera);
-        const target = new THREE.Vector3();
-        raycaster.ray.intersectPlane(plane, target);
-
-        for (let i = 0; i < config.count; i++) {
-          const idx = i * 3;
-          const original = originalPositions[i];
-          const speed = speeds[i];
-
-          // 1. Natural Floating Movement
-          original.x += speed.x;
-          original.y += speed.y;
-
-          // Bounce off "walls" (keep them in frame roughly)
-          if (original.x > 300 || original.x < -300) speed.x *= -1;
-          if (original.y > 200 || original.y < -200) speed.y *= -1;
-
-          // 2. Mouse Interaction
-          let px = posArray[idx];
-          let py = posArray[idx + 1];
-          let pz = posArray[idx + 2];
-
-          const dx = px - target.x;
-          const dy = py - target.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          let targetX = original.x;
-          let targetY = original.y;
-          let targetZ = original.z;
-
-          if (dist < config.interactionRadius) {
-            const angle = Math.atan2(dy, dx);
-            const force =
-              (config.interactionRadius - dist) / config.interactionRadius;
-
-            targetX =
-              original.x +
-              Math.cos(angle) * config.interactionForce * force * 3;
-            targetY =
-              original.y +
-              Math.sin(angle) * config.interactionForce * force * 3;
-            targetZ = original.z + force * 50;
-          }
-
-          // Smooth interpolation
-          posArray[idx] += (targetX - px) * 0.05;
-          posArray[idx + 1] += (targetY - py) * 0.05;
-          posArray[idx + 2] += (targetZ - pz) * 0.05;
-        }
-
-        geometry.attributes.position.needsUpdate = true;
-        renderer.render(scene, camera);
-      }
-
-      animate();
-
-      // Handle Resize
-      window.addEventListener("resize", () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-      });
-    </script>
   </body>
 </html>
