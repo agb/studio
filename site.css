@@ -1,0 +1,425 @@
+:root {
+  color-scheme: light;
+  --background: #fdfdfc;
+  --foreground: #171714;
+  --muted: #777873;
+  --faint: #a3a49f;
+  --line: #e8e8e4;
+  --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
+    Georgia, serif;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+a:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 5px;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 25px 32px;
+}
+
+.brand,
+.contact-link,
+.eyebrow,
+.app-meta,
+.app-link,
+.app-status,
+.policy-meta {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.brand,
+.contact-link {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.brand:hover,
+.contact-link:hover,
+.contact-link:focus-visible {
+  color: var(--foreground);
+}
+
+.apps-main {
+  width: min(920px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 109px 0 100px;
+}
+
+.intro {
+  margin-bottom: 68px;
+  text-align: center;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 30px;
+  color: var(--faint);
+}
+
+.intro h1,
+.policy-header h1 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(48px, 6vw, 68px);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  line-height: 0.95;
+}
+
+.intro p {
+  margin: 26px 0 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.app-card {
+  display: flex;
+  min-height: 318px;
+  flex-direction: column;
+  padding: 17px 0 15px;
+  border-top: 1px solid var(--line);
+  animation: rise 650ms ease both;
+}
+
+.app-card:nth-child(2) {
+  animation-delay: 80ms;
+}
+
+.app-card:nth-child(3) {
+  animation-delay: 160ms;
+}
+
+.app-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--faint);
+  letter-spacing: 0.19em;
+}
+
+.app-card h2 {
+  margin: 24px 0 10px;
+  font-family: var(--serif);
+  font-size: 25px;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+}
+
+.app-description {
+  max-width: 30ch;
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.app-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: auto;
+}
+
+.app-link {
+  position: relative;
+  width: fit-content;
+  padding-bottom: 4px;
+  color: var(--muted);
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.app-link::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms ease;
+}
+
+.app-link:hover {
+  color: var(--foreground);
+}
+
+.app-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.app-status {
+  color: var(--faint);
+  letter-spacing: 0.18em;
+}
+
+.legal-main {
+  width: min(720px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 80px 0 120px;
+}
+
+.policy-header {
+  margin-bottom: 72px;
+  text-align: center;
+  animation: rise 650ms ease both;
+}
+
+.policy-header .eyebrow {
+  margin-bottom: 28px;
+}
+
+.policy-meta {
+  display: block;
+  margin-top: 28px;
+  color: var(--faint);
+  letter-spacing: 0.18em;
+  line-height: 1.6;
+}
+
+.legal-document {
+  padding-top: 2px;
+  border-top: 1px solid var(--line);
+  animation: rise 650ms 80ms ease both;
+}
+
+.legal-document > .section-title {
+  margin: 0;
+  padding: 30px 0 0;
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  text-transform: none;
+}
+
+.legal-document > .section-content {
+  margin: 0;
+  padding: 14px 0 33px;
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-document > .policy-header + .section-content {
+  padding-top: 34px;
+}
+
+.section-content {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.78;
+}
+
+.section-content p {
+  margin: 0 0 16px;
+}
+
+.section-content p:last-child {
+  margin-bottom: 0;
+}
+
+.section-content ul {
+  margin: 16px 0;
+  padding-left: 22px;
+}
+
+.section-content li {
+  margin-bottom: 8px;
+  padding-left: 4px;
+}
+
+.section-content li:last-child {
+  margin-bottom: 0;
+}
+
+.highlight {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.inline-link {
+  color: var(--foreground);
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+}
+
+.contact-info {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.7;
+}
+
+.acknowledgement {
+  margin-top: 42px;
+  padding-top: 26px;
+  border-top: 1px solid var(--line);
+  color: var(--faint);
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  line-height: 1.7;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    padding: 22px 21px;
+  }
+
+  .apps-main {
+    width: min(100% - 42px, 520px);
+    padding: 86px 0 72px;
+  }
+
+  .intro {
+    margin-bottom: 69px;
+  }
+
+  .eyebrow {
+    margin-bottom: 24px;
+  }
+
+  .intro h1,
+  .policy-header h1 {
+    font-size: clamp(47px, 15vw, 62px);
+  }
+
+  .intro p {
+    max-width: 30ch;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .app-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .app-card {
+    min-height: 258px;
+    padding: 18px 0 24px;
+  }
+
+  .app-card h2 {
+    margin-top: 22px;
+    font-size: 27px;
+  }
+
+  .app-description {
+    max-width: 37ch;
+  }
+
+  .legal-main {
+    width: min(100% - 42px, 620px);
+    padding: 68px 0 82px;
+  }
+
+  .policy-header {
+    margin-bottom: 55px;
+  }
+
+  .policy-header .eyebrow {
+    margin-bottom: 23px;
+  }
+
+  .policy-meta {
+    margin-top: 23px;
+  }
+
+  .legal-document > .section-title {
+    padding-top: 25px;
+    font-size: 21px;
+  }
+
+  .legal-document > .section-content {
+    padding-bottom: 28px;
+  }
+
+  .section-content {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .app-card,
+  .policy-header,
+  .legal-document {
+    animation: none;
+  }
+
+  .brand,
+  .contact-link,
+  .app-link,
+  .app-link::after {
+    transition: none;
+  }
+}
