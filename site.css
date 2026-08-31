@@ -74,7 +74,7 @@ a:focus-visible {
 }
 
 .apps-main {
-  width: min(920px, calc(100% - 64px));
+  width: min(1120px, calc(100% - 64px));
   margin: 0 auto;
   padding: 109px 0 100px;
 }
@@ -110,7 +110,7 @@ a:focus-visible {
 
 .app-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 30px;
 }
 
@@ -129,6 +129,10 @@ a:focus-visible {
 
 .app-card:nth-child(3) {
   animation-delay: 160ms;
+}
+
+.app-card:nth-child(4) {
+  animation-delay: 240ms;
 }
 
 .app-meta {
@@ -322,6 +326,16 @@ a:focus-visible {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 980px) {
+  .apps-main {
+    width: min(760px, calc(100% - 64px));
+  }
+
+  .app-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
