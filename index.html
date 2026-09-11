@@ -15,7 +15,7 @@
       <a class="brand" href="#top" aria-label="AGB Studio, back to top">
         AGB Studio
       </a>
-      <a class="contact-link" href="mailto:support@chart-review.com">
+      <a class="contact-link" href="https://www.miraku.jp/contact">
         Contact
       </a>
     </header>
@@ -25,81 +25,28 @@
         <span class="eyebrow">made with love</span>
       </section>
 
-      <section class="app-grid" aria-label="AGB Studio apps">
-        <article class="app-card">
-          <div class="app-meta">
-            <span>01</span>
-            <span>iOS &amp; Android</span>
+      <section class="json-viewer" aria-label="AGB Studio apps JSON">
+        <header class="json-toolbar">
+          <div class="json-file">
+            <span class="json-file-dot" aria-hidden="true"></span>
+            <span>apps.json</span>
+            <span id="json-meta" class="json-meta">Loading…</span>
           </div>
-          <h2>Style &amp; Makeup Checker</h2>
-          <p class="app-description">
-            A focused style companion that turns a quick scan into personal
-            makeup and styling guidance.
-          </p>
-          <div class="app-actions">
-            <span class="app-status">Coming soon</span>
-          </div>
-        </article>
-
-        <article class="app-card">
-          <div class="app-meta">
-            <span>02</span>
-            <span>Web</span>
-          </div>
-          <h2>Chart Review</h2>
-          <p class="app-description">
-            A clear, focused workspace for reviewing charts and making better
-            informed decisions.
-          </p>
-          <div class="app-actions">
-            <a
-              class="app-link"
-              href="https://www.chart-review.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View app →
-            </a>
-          </div>
-        </article>
-
-        <article class="app-card">
-          <div class="app-meta">
-            <span>03</span>
-            <span>Web</span>
-          </div>
-          <h2>Miraku</h2>
-          <p class="app-description">
-            Memorable Japanese lessons for mastering radicals, kanji, and
-            vocabulary through their origins.
-          </p>
-          <div class="app-actions">
-            <a
-              class="app-link"
-              href="https://www.miraku.jp/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View app →
-            </a>
-          </div>
-        </article>
-
-        <article class="app-card">
-          <div class="app-meta">
-            <span>04</span>
-            <span>iOS &amp; Android</span>
-          </div>
-          <h2>Gradient Color Screen</h2>
-          <p class="app-description">
-            Turn your phone or tablet into a customizable gradient softbox,
-            photo light, and animated mood light.
-          </p>
-          <div class="app-actions">
-            <span class="app-status">Coming soon</span>
-          </div>
-        </article>
+          <button
+            id="copy-json"
+            class="copy-button"
+            type="button"
+            disabled
+          >
+            Copy JSON
+          </button>
+        </header>
+        <pre class="json-document"><code
+          id="apps-json"
+          aria-live="polite"
+        ></code></pre>
       </section>
     </main>
+    <script src="apps.js" defer></script>
   </body>
 </html>

@@ -5,6 +5,15 @@
   --muted: #777873;
   --faint: #a3a49f;
   --line: #e8e8e4;
+  --surface: #ffffff;
+  --code-key: #6f42c1;
+  --code-string: #17693a;
+  --code-number: #956400;
+  --code-boolean: #b13c2e;
+  --code-null: #777873;
+  --status-active: #16803d;
+  --status-closed: #b13c2e;
+  --status-coming-soon: #956400;
   --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
     Georgia, serif;
   --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -50,9 +59,6 @@ a:focus-visible {
 .brand,
 .contact-link,
 .eyebrow,
-.app-meta,
-.app-link,
-.app-status,
 .policy-meta {
   font-size: 9px;
   font-weight: 500;
@@ -74,19 +80,18 @@ a:focus-visible {
 }
 
 .apps-main {
-  width: min(1120px, calc(100% - 64px));
-  margin: 0 auto;
-  padding: 109px 0 100px;
+  width: 100%;
+  padding: 88px 32px 96px;
 }
 
 .intro {
-  margin-bottom: 68px;
+  margin-bottom: 48px;
   text-align: center;
 }
 
 .eyebrow {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 0;
   color: var(--faint);
 }
 
@@ -108,101 +113,132 @@ a:focus-visible {
   line-height: 1.6;
 }
 
-.app-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 30px;
+.json-viewer {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 18px 60px rgb(23 23 20 / 5%);
 }
 
-.app-card {
-  display: flex;
-  min-height: 318px;
-  flex-direction: column;
-  padding: 17px 0 15px;
-  border-top: 1px solid var(--line);
-  animation: rise 650ms ease both;
-}
-
-.app-card:nth-child(2) {
-  animation-delay: 80ms;
-}
-
-.app-card:nth-child(3) {
-  animation-delay: 160ms;
-}
-
-.app-card:nth-child(4) {
-  animation-delay: 240ms;
-}
-
-.app-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--faint);
-  letter-spacing: 0.19em;
-}
-
-.app-card h2 {
-  margin: 24px 0 10px;
-  font-family: var(--serif);
-  font-size: 25px;
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
-}
-
-.app-description {
-  max-width: 30ch;
-  margin: 0;
-  color: var(--muted);
-  font-family: var(--serif);
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-.app-actions {
+.json-toolbar {
   display: flex;
   align-items: center;
-  gap: 18px;
-  margin-top: auto;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 52px;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--line);
 }
 
-.app-link {
-  position: relative;
-  width: fit-content;
-  padding-bottom: 4px;
+.json-file {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 9px;
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+}
+
+.json-file-dot {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #72a678;
+  box-shadow: 0 0 0 3px rgb(114 166 120 / 12%);
+}
+
+.json-meta {
+  color: var(--faint);
+}
+
+.copy-button {
+  flex: 0 0 auto;
+  padding: 6px 9px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
   color: var(--muted);
-  letter-spacing: 0.18em;
-  text-decoration: none;
-  transition: color 180ms ease;
+  cursor: pointer;
+  font: 500 9px/1 var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: border-color 180ms ease, color 180ms ease,
+    background-color 180ms ease;
 }
 
-.app-link::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: currentColor;
-  content: "";
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 220ms ease;
-}
-
-.app-link:hover {
+.copy-button:hover:not(:disabled),
+.copy-button:focus-visible {
+  border-color: #cacac5;
+  background: #fafaf8;
   color: var(--foreground);
 }
 
-.app-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.copy-button:focus-visible {
+  outline: 1px solid var(--foreground);
+  outline-offset: 3px;
 }
 
-.app-status {
-  color: var(--faint);
-  letter-spacing: 0.18em;
+.copy-button:disabled {
+  cursor: wait;
+  opacity: 0.5;
+}
+
+.json-document {
+  width: 100%;
+  margin: 0;
+  padding: 28px 30px 34px;
+  overflow: visible;
+  color: var(--foreground);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: clamp(11px, 0.8vw, 13px);
+  line-height: 1.7;
+  tab-size: 2;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.json-key {
+  color: var(--code-key);
+}
+
+.json-string {
+  color: var(--code-string);
+}
+
+.json-number {
+  color: var(--code-number);
+}
+
+.json-boolean {
+  color: var(--code-boolean);
+}
+
+.json-null {
+  color: var(--code-null);
+}
+
+.json-status-active,
+.json-status-closed,
+.json-status-coming-soon {
+  font-weight: 600;
+}
+
+.json-status-active {
+  color: var(--status-active);
+}
+
+.json-status-closed {
+  color: var(--status-closed);
+}
+
+.json-status-coming-soon {
+  color: var(--status-coming-soon);
 }
 
 .legal-main {
@@ -329,32 +365,27 @@ a:focus-visible {
   }
 }
 
-@media (max-width: 980px) {
-  .apps-main {
-    width: min(760px, calc(100% - 64px));
-  }
-
-  .app-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 760px) {
   .site-header {
     padding: 22px 21px;
   }
 
   .apps-main {
-    width: min(100% - 42px, 520px);
-    padding: 86px 0 72px;
+    width: 100%;
+    padding: 68px 21px 72px;
   }
 
   .intro {
-    margin-bottom: 69px;
+    margin-bottom: 36px;
   }
 
-  .eyebrow {
-    margin-bottom: 24px;
+  .json-toolbar {
+    min-height: 48px;
+    padding: 0 13px;
+  }
+
+  .json-document {
+    padding: 20px 16px 24px;
   }
 
   .intro h1,
@@ -366,25 +397,6 @@ a:focus-visible {
     max-width: 30ch;
     margin-right: auto;
     margin-left: auto;
-  }
-
-  .app-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .app-card {
-    min-height: 258px;
-    padding: 18px 0 24px;
-  }
-
-  .app-card h2 {
-    margin-top: 22px;
-    font-size: 27px;
-  }
-
-  .app-description {
-    max-width: 37ch;
   }
 
   .legal-main {
@@ -424,7 +436,6 @@ a:focus-visible {
     scroll-behavior: auto;
   }
 
-  .app-card,
   .policy-header,
   .legal-document {
     animation: none;
@@ -432,8 +443,7 @@ a:focus-visible {
 
   .brand,
   .contact-link,
-  .app-link,
-  .app-link::after {
+  .copy-button {
     transition: none;
   }
 }

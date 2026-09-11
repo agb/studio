@@ -1,0 +1,54 @@
+{
+  "$schema": "./apps.schema.json",
+  "version": 1,
+  "apps": [
+    {
+      "id": "style-and-makeup-checker",
+      "name": "Style & Makeup Checker",
+      "description": "A focused style companion that turns a quick scan into personal makeup and styling guidance.",
+      "platforms": ["Android"],
+      "status": "active",
+      "url": "https://play.google.com/store/apps/details?id=com.styleandmakeup.checker",
+      "legal": {
+        "privacyPolicy": "privacy-policy/style-and-makeup-checker.html",
+        "termsOfService": "terms-of-service/style-and-makeup-checker.html"
+      }
+    },
+    {
+      "id": "chart-review",
+      "name": "Chart Review",
+      "description": "A clear, focused workspace for reviewing charts and making better informed decisions.",
+      "platforms": ["Web"],
+      "status": "closed",
+      "url": null,
+      "legal": {
+        "privacyPolicy": null,
+        "termsOfService": null
+      }
+    },
+    {
+      "id": "miraku",
+      "name": "Miraku",
+      "description": "Memorable Japanese lessons for mastering radicals, kanji, and vocabulary through their origins.",
+      "platforms": ["Web"],
+      "status": "active",
+      "url": "https://www.miraku.jp/",
+      "legal": {
+        "privacyPolicy": "https://www.miraku.jp/privacy-policy",
+        "termsOfService": "https://www.miraku.jp/tos"
+      }
+    },
+    {
+      "id": "gradient-color-screen",
+      "name": "Gradient Color Screen",
+      "description": "Turn your phone or tablet into a customizable gradient softbox, photo light, and animated mood light.",
+      "platforms": ["iOS", "Android"],
+      "status": "coming_soon",
+      "url": null,
+      "legal": {
+        "privacyPolicy": "privacy-policy/gradient-color-screen.html",
+        "termsOfService": "terms-of-service/gradient-color-screen.html"
+      }
+    }
+  ]
+}

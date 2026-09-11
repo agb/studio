@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AGB Studio App Catalog",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "version", "apps"],
+  "properties": {
+    "$schema": {
+      "const": "./apps.schema.json"
+    },
+    "version": {
+      "const": 1
+    },
+    "apps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/app"
+      }
+    }
+  },
+  "$defs": {
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "description",
+        "platforms",
+        "status",
+        "url",
+        "legal"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "platforms": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": ["Web", "iOS", "Android"]
+          }
+        },
+        "status": {
+          "enum": ["active", "closed", "coming_soon"]
+        },
+        "url": {
+          "type": ["string", "null"],
+          "format": "uri-reference",
+          "minLength": 1
+        },
+        "legal": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["privacyPolicy", "termsOfService"],
+          "properties": {
+            "privacyPolicy": {
+              "type": ["string", "null"],
+              "format": "uri-reference",
+              "minLength": 1
+            },
+            "termsOfService": {
+              "type": ["string", "null"],
+              "format": "uri-reference",
+              "minLength": 1
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": { "const": "active" }
+            }
+          },
+          "then": {
+            "properties": {
+              "url": { "type": "string" }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": { "enum": ["closed", "coming_soon"] }
+            }
+          },
+          "then": {
+            "properties": {
+              "url": { "type": "null" }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
