@@ -15,18 +15,6 @@
       }
     },
     {
-      "id": "chart-review",
-      "name": "Chart Review",
-      "description": "A clear, focused workspace for reviewing charts and making better informed decisions.",
-      "platforms": ["Web"],
-      "status": "closed",
-      "url": null,
-      "legal": {
-        "privacyPolicy": null,
-        "termsOfService": null
-      }
-    },
-    {
       "id": "miraku",
       "name": "Miraku",
       "description": "Memorable Japanese lessons for mastering radicals, kanji, and vocabulary through their origins.",
