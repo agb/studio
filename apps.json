@@ -37,6 +37,18 @@
         "privacyPolicy": "privacy-policy/gradient-color-screen.html",
         "termsOfService": "terms-of-service/gradient-color-screen.html"
       }
+    },
+    {
+      "id": "ai-sleep-assistant-sleep-now",
+      "name": "AI Sleep Assistant: Sleep Now",
+      "description": "A local-first bedtime companion with optional routine suggestions, reminders, alarms, and self-reported sleep reflections for adults.",
+      "platforms": ["iOS", "Android"],
+      "status": "coming_soon",
+      "url": null,
+      "legal": {
+        "privacyPolicy": "privacy-policy/ai-sleep-assistant-sleep-now.html",
+        "termsOfService": "terms-of-service/ai-sleep-assistant-sleep-now.html"
+      }
     }
   ]
 }
